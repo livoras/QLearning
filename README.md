@@ -8,14 +8,14 @@ func main()  {
 	env := NewEnv(20)
 	env.render()
 
-    /** Initialize an agent with actions space */
+        /** Initialize an agent with actions space */
 	agent := QLearning.NewAgent(2)
 	
 	for i := 0; i < 10000; i++ {
 		isDone := false
 		env.reset()
 		for !isDone {
-		    /** Choose action per to state */
+		        /** Choose action per to state */
 			action := agent.ChooseAction(env.state)
 			oldState := env.state
 			newState, reward, done := env.step(action)
