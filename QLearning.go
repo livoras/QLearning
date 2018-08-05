@@ -56,11 +56,9 @@ func (v *Agent) ChooseAction(state State) int {
 	v.Epsilon = math.Max(v.Epsilon * v.EpsilonDecay, v.EpsilonMin)
 	if rand.Float64() < v.Epsilon {
 		/** 进行随机选择 */
-		//log.Print("随机选择", v.Epsilon)
 		return rand.Intn(v.ActionsSpace)
 	} else {
 		/** 选择最大的 */
-		//log.Print("选择最大的", v.Epsilon)
 		actions := v.getActionsOrSetActionsByState(state)
 		maxActionIndex, _ := argmax(actions)
 		return maxActionIndex
@@ -77,7 +75,7 @@ func (v *Agent) LoadModel() {
 
 /** 根据 state 获取 actions 的 Q 值列表，如果不存在则初始化一个 */
 func (v *Agent) getActionsOrSetActionsByState (state State) []float64  {
-	/** 如果有值，直接 */
+	/** 如果有值，直接返回 actions */
 	if actions, ok := v.Q[state]; ok {
 		return actions
 	} else {
